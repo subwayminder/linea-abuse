@@ -15,7 +15,7 @@ from utils.sleeping import sleep
 async def get_gas():
     try:
         w3 = Web3(
-            Web3.AsyncHTTPProvider(random.choice(RPC["ethereum"]["rpc"])),
+            Web3.AsyncHTTPProvider(RPC),
             modules={"eth": (AsyncEth,)},
         )
         gas_price = await w3.eth.gas_price

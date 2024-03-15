@@ -12,8 +12,9 @@ from eth_account import Account as EthAccount
 from quest_modules.bitavatar import BitAvatar
 from questionary import Choice, Separator
 from functions import *
-from config import ACCOUNTS
-from settings import QUANTITY_THREADS, THREAD_SLEEP_FROM, THREAD_SLEEP_TO, USE_PROXY, RANDOM_WALLET, SLEEP_FROM, SLEEP_TO
+from config import ACCOUNTS, PROXIES
+from settings import QUANTITY_THREADS, THREAD_SLEEP_FROM, THREAD_SLEEP_TO, USE_PROXY, RANDOM_WALLET, SLEEP_FROM, SLEEP_TO, CHECK_PROXY
+from utils.get_proxy import check_proxy
 
 def getWallets():
     if USE_PROXY:
@@ -44,12 +45,11 @@ def get_module():
             Choice("Минт Pictogram NFT", runPictographMintNft),
             Choice("Минт Satoshi NFT", runSatoshiNftMint),
             # Choice("Минтим Enders Gate", runEndersGateMint),
-
             Separator(" - 3-я неделя"),
             Choice("Отправить письмо Dmail", runDmailSend),
             Choice("BitAvatar чекин", runDmailSend),
             Choice("Gamic WETH депозит", runGamicDepositWeth),
-            Choice("Минтим Emerald NFT", runGamicDepositWeth),
+            Choice("Минтим Emerald NFT", runEmeraldMintNft),
             Choice("Курируем ссылку на ReadOn", runReadonCurate),
             Choice("Делаем транзу для SendingMe", runSendingMeTx),
             Choice("Минтим Abyss", runAbyssNftMint),
@@ -85,6 +85,12 @@ def _async_run_module(module, account):
     asyncio.run(run_module(module, account))
 
 def main(module):
+    if(CHECK_PROXY):
+        for proxy in PROXIES:
+            checkProxy = asyncio.run(check_proxy(proxy))
+            if(checkProxy != True):
+                raise ValueError('Прокси ' + proxy + ' не работает')
+
     wallets = getWallets()
 
     if RANDOM_WALLET:
@@ -100,7 +106,6 @@ def main(module):
             time.sleep(random.randint(THREAD_SLEEP_FROM, THREAD_SLEEP_TO))
 
 if __name__ == '__main__':
-    # logger.add("logging.log")
-    # module = get_module()
-    # main(module=module)
-    test_run(runEndersGateMint)
+    logger.add("logging.log")
+    module = get_module()
+    main(module=module)

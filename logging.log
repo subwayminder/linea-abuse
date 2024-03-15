@@ -1,6 +1,0 @@
-2024-03-15 17:20:09.925 | INFO     | quest_modules.week2.pictograph:mintNft:24 - Pictogram NFT уже сминчена
-2024-03-15 17:20:47.054 | SUCCESS  | quest_modules.account:wait_until_tx_finished:134 - [1][0x66930124dFfF91926E035c7306e8FA9F0f4ff8b9] https://lineascan.build/tx/0xb39985717175b3b92666a91ab4dda5c309b5c93762877ce3d49d29ba9e0e6a4c successfully!
-2024-03-15 17:51:03.780 | ERROR    | __main__:run_module:72 - name 'ABYSS_NFT_CONTRACT' is not defined
-2024-03-15 17:51:35.647 | SUCCESS  | quest_modules.account:wait_until_tx_finished:134 - [1][0x66930124dFfF91926E035c7306e8FA9F0f4ff8b9] https://lineascan.build/tx/0x1d0d8d33889cecabf69453e26c9dce17a39aac9c2c4df5895b058c6a7e4518a3 successfully!
-2024-03-15 17:52:04.776 | ERROR    | __main__:run_module:72 - 'NoneType' object is not callable
-2024-03-15 17:53:34.342 | INFO     | quest_modules.week4.tanuki:mintNft:23 - Pictogram NFT уже сминчена

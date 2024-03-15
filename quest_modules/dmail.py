@@ -5,13 +5,16 @@ from hashlib import sha256
 from typing import Union
 from loguru import logger
 import random
+from utils.gas_checker import check_gas
+from utils.helpers import retry
 
 
 class Dmail(Account):
     def __init__(self, account_id: int, private_key: str, proxy: Union[None, str]) -> None:
         super().__init__(account_id=account_id, private_key=private_key, proxy=proxy)
         self.contract = self.get_contract(DMAIL_CONTRACT, DMAIL_ABI)
-
+    @check_gas
+    @retry
     async def sendMail(self):
         txData = await self.getTxData()
         email = sha256(str(1e11 * random.random()).encode()).hexdigest()

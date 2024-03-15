@@ -5,21 +5,25 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
 import base64
 import sys
+import dotenv
 
 ACCOUNTS = []
 
-secret_key = '8b2cf0b5e21ac7abf0e0b7931c5dc13a6960838d36b71af614b2aa81cddebe90'
+secret_key = dotenv.get_key('.env', 'SECRET_KEY')
 if not secret_key:
     raise ValueError("The environment variable SECRET_KEY is not set")
 secret_key = bytes.fromhex(secret_key)
     
 
-RPC = 'https://rpc.linea.build'
-RPC_EXPLOLER = 'https://lineascan.build/tx/'
+RPC = dotenv.get_key('.env', 'RPC')
+RPC_EXPLOLER = dotenv.get_key('.env', 'RPC_EXPLOLER')
 RPC_TOKEN = 'ETH'
 
 with open('quest_modules/data/erc20_abi.json') as file:
     ERC20_ABI = json.load(file)
+
+with open("proxy.txt", "r") as file:
+    PROXIES = [row.strip() for row in file]
 
 with open("accounts.txt", "r") as file:
     while True:

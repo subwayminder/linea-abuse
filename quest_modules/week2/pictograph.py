@@ -4,6 +4,8 @@ from typing import Union
 from hashlib import sha256
 from typing import Union
 from loguru import logger
+from utils.gas_checker import check_gas
+from utils.helpers import retry
 
 
 class Pictograph(Account):
@@ -11,6 +13,8 @@ class Pictograph(Account):
         super().__init__(account_id=account_id, private_key=private_key, proxy=proxy)
         self.contract = self.get_contract(PICTOGRAPHS_CONTRACT, PICTOGRAPHS_ABI)
 
+    @check_gas
+    @retry
     async def mintNft(self):
         balance = await self.contract.functions.balanceOf(self.address).call()
         if (balance == 0):

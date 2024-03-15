@@ -4,6 +4,8 @@ from typing import Union
 from hashlib import sha256
 from typing import Union
 from loguru import logger
+from utils.gas_checker import check_gas
+from utils.helpers import retry
 
 
 class Yooldoo(Account):
@@ -11,6 +13,8 @@ class Yooldoo(Account):
         super().__init__(account_id=account_id, private_key=private_key, proxy=proxy)
         self.contract = self.get_contract(YOOLDOO_CONTRACT, YOOLDOO_ABI)
 
+    @check_gas
+    @retry
     async def run(self):
         txData = await self.getTxData(value=2000000000000)
         tx = await self.contract.functions.standUp('0xfb89f3b1').build_transaction(txData)

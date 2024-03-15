@@ -8,3 +8,4 @@ faker==24.1.0
 questionary==1.10.0
 uint==0.2.1
 numpy==1.26.4
+python-dotenv==1.0.1
