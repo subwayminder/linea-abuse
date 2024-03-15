@@ -22,7 +22,7 @@ CHECK_PROXY = dotenv.get_key('.env', 'CHECK_PROXY') == 'True' if dotenv.get_key(
 CHECK_GWEI = dotenv.get_key('.env', 'CHECK_GWEI') == 'True' if dotenv.get_key('.env', 'CHECK_GWEI') != None else False  # True or False
 MAX_GWEI = float(dotenv.get_key('.env', 'MAX_GWEI')) if dotenv.get_key('.env', 'MAX_GWEI') != None else 1
 
-GAS_MULTIPLIER = int(dotenv.get_key('.env', 'GAS_MULTIPLIER')) if dotenv.get_key('.env', 'GAS_MULTIPLIER') != None else 1
+GAS_MULTIPLIER = float(dotenv.get_key('.env', 'GAS_MULTIPLIER')) if dotenv.get_key('.env', 'GAS_MULTIPLIER') != None else 1
 
 # RETRY MODE
 RETRY_COUNT = int(dotenv.get_key('.env', 'RETRY_COUNT')) if dotenv.get_key('.env', 'RETRY_COUNT') != None else 1
