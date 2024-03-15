@@ -5,4 +5,4 @@ __pycache__/
 .venv
 .vscode
 .env
-.logging.log
+logging.log
