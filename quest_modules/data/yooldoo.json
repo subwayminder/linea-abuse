@@ -1,0 +1,13 @@
+[
+    {
+        "type": "function",
+        "name": "standUp",
+        "constant": false,
+        "inputs": [],
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "gas": null,
+        "_isFragment": true
+      }
+]

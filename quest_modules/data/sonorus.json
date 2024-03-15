@@ -1,0 +1,7 @@
+{
+    "code": 0,
+    "message": "success",
+    "data": {
+        "template": "Welcome to Sonorus!\n\nThis request is for a security check and will not trigger a blockchain transaction or cost any gas fees.\n\nThis authority will update after 24 hours.\n\nYour Wallet address: {{wallet_address}}\n\nNonce: {{nonce}}"
+    }
+}

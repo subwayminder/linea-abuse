@@ -1,0 +1,7 @@
+accounts.txt
+proxy.txt
+__pycache__/
+.vscode
+.venv
+.vscode
+.env

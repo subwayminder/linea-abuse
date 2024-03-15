@@ -1,0 +1,43 @@
+[
+    {
+        "type": "function",
+        "name": "purchase",
+        "constant": false,
+        "inputs": [
+          {
+            "name": "quantity",
+            "type": "uint256",
+            "indexed": null,
+            "components": null,
+            "arrayLength": null,
+            "arrayChildren": null,
+            "baseType": "uint256",
+            "_isParamType": true
+          }
+        ],
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "gas": null,
+        "_isFragment": true
+      },
+      {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            }
+        ],
+        "name": "balanceOf",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]
