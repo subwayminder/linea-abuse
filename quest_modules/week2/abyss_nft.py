@@ -16,6 +16,7 @@ class AbyssNft(Account):
     @check_gas
     @retry
     async def mintNft(self):
+        logger.info(f"[{self.account_id}][{self.address}] Минт Abyss Nft")
         balance = await self.contract.functions.balanceOf(self.address).call()
         if(balance == 0):
             txData = await self.getTxData(100000000000000)
@@ -23,3 +24,5 @@ class AbyssNft(Account):
             signedTx = await self.sign(tx)
             txHash = await self.send_raw_transaction(signedTx)
             await self.wait_until_tx_finished(txHash.hex())
+        else:
+            logger.info(f"[{self.account_id}][{self.address}] Abyss NFT уже есть")
