@@ -7,7 +7,7 @@ import sys
 from loguru import logger
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 from eth_account import Account as EthAccount
 from quest_modules.bitavatar import BitAvatar
 from questionary import Choice, Separator
@@ -108,7 +108,7 @@ def main(module):
     if RANDOM_WALLET:
         random.shuffle(wallets)
 
-    with ThreadPoolExecutor(max_workers=QUANTITY_THREADS) as executor:
+    with ProcessPoolExecutor(max_workers=QUANTITY_THREADS) as executor:
         for _, account in enumerate(wallets, start=1):
             executor.submit(
                 _async_run_module,
