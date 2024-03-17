@@ -91,3 +91,23 @@ with open('quest_modules/data/yooldoo.json') as file:
 TANUKI_CONTRACT = '0x47874ff0BEf601D180a8A653A912EBbE03739a1a'
 with open('quest_modules/data/tanuki.json') as file:
     TANUKI_ABI = json.load(file)
+
+LUCKY_CAT_CONTRACT = '0xc577018b3518cD7763D143d7699B280d6E50fdb6'
+with open('quest_modules/data/lucky_cat.json') as file:
+    LUCKY_CAT_ABI = json.load(file)
+
+SIDUS_CONTRACT = '0x34Be5b8C30eE4fDe069DC878989686aBE9884470'
+with open('quest_modules/data/sidus.json') as file:
+    SIDUS_ABI = json.load(file)
+
+GAMER_BOOM_CONTRACT = '0x6CD20be8914A9Be48f2a35E56354490B80522856'
+with open('quest_modules/data/gamer_boom.json') as file:
+    GAMER_BOOM_ABI = json.load(file)
+
+TOWN_STORY_CONTRACT = '0x281A95769916555D1C97036E0331b232b16EdABC'
+with open('quest_modules/data/town_story.json') as file:
+    TOWN_STORY_ABI = json.load(file)
+
+TOWN_STORY_NFT_CONTRACT = '0xD41aC492FEDC671Eb965707d1DEDad4EB7B6EfC5'
+with open('quest_modules/data/town_story_nft.json') as file:
+    TOWN_STORY_NFT_ABI = json.load(file)

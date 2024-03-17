@@ -9,9 +9,17 @@ from quest_modules.week2.abyss_nft import AbyssNft
 from quest_modules.week2.enders_gate import EndersGate
 from quest_modules.week2.yooldoo import Yooldoo
 from quest_modules.week4.tanuki import TanukiNft
+from quest_modules.week4.lucky_cat import LuckyCat
+from quest_modules.week1.sidus import SidusMint
+from quest_modules.week1.gamer_boom import GamerBoom
+from quest_modules.week1.town_story import TownStory
+from quest_modules.week1.town_story_nft import TownStoryNft
 from config import SENDING_ME_FAKE_WALLET, SATOSHI_FAKE_WALLET
 from eth_account.messages import encode_defunct
+from utils.gas_checker import check_gas
+from utils.helpers import retry
 from web3 import Web3
+from random import randrange
 import uuid
 import requests
 import time
@@ -63,7 +71,9 @@ async def runReadonCurate(account):
             proxy=account.get('proxy')
         )
     await readonModule.curate()
-
+    
+@check_gas
+@retry
 async def runSendingMeTx(account):
     accountInstance = Account(
             account_id = account.get('id'), 
@@ -98,6 +108,8 @@ async def runEndersGateMint(account):
         )
     await endersNftModule.mintNft()
 
+@check_gas
+@retry
 async def runSatoshiNftMint(account):
     accountInstance = Account(
             account_id = account.get('id'), 
@@ -108,7 +120,7 @@ async def runSatoshiNftMint(account):
             "chainId": await accountInstance.w3.eth.chain_id,
             "from": accountInstance.address,
             "to": SATOSHI_FAKE_WALLET,
-            "value": 100000000000000,
+            "value": randrange(100000000000000, 150000000000000),
             "gasPrice": await accountInstance.w3.eth.gas_price,
             "nonce": await accountInstance.w3.eth.get_transaction_count(accountInstance.address),
         }
@@ -131,3 +143,51 @@ async def runTanukiNftMint(account):
             proxy=account.get('proxy')
         )
     await module.mintNft()
+
+async def runLuckyCat(account):
+    module = LuckyCat(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.adoptCat()
+
+async def runSidusNft(account):
+    module = SidusMint(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mintNft()
+
+async def runGamerBoomSign(account):
+    module = GamerBoom(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.signGenesisProof()
+
+async def runTownStorySignUp(account):
+    module = TownStory(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.signUp()
+
+async def runTownStoryMintNft(account):
+    module = TownStoryNft(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mintNft()
+
+async def runTownStoryReleaseNft(account):
+    module = TownStoryNft(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.releaseNft()

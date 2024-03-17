@@ -39,11 +39,20 @@ def getWallets():
 
 def get_module():
     result = questionary.select(
-        "Ну че ебать выносим помойку?",
+        "Выбор опций",
         choices=[
+            # TODO: разобрать Sonorus signup
+            Separator(" - 1-я неделя"),
+            Choice("Минт Pictogram NFT", runSidusNft),
+            Choice("Минт Pictogram NFT", runGamerBoomSign),
+            Choice("Минт Pictogram NFT", runTownStorySignUp),
+            Choice("Минт Pictogram NFT", runTownStoryMintNft),
+            Choice("Минт Pictogram NFT", runTownStoryReleaseNft),
             Separator(" - 2-я неделя"),
             Choice("Минт Pictogram NFT", runPictographMintNft),
             Choice("Минт Satoshi NFT", runSatoshiNftMint),
+            Choice("Минт Abyss NFT", runAbyssNftMint),
+            # TODO: Доделать enders gate по возможности
             # Choice("Минтим Enders Gate", runEndersGateMint),
             Separator(" - 3-я неделя"),
             Choice("Отправить письмо Dmail", runDmailSend),
@@ -55,6 +64,7 @@ def get_module():
             Choice("Минтим Abyss", runAbyssNftMint),
             Separator(" - 4-я неделя"),
             Choice("Минтим Tanuki", runTanukiNftMint),
+            Choice("Lucky Cat", runLuckyCat),
             Choice("Exit", "exit"),
         ],
         qmark="⚙️ ",
@@ -76,6 +86,7 @@ async def run_module(module, account):
 
     await sleep(SLEEP_FROM, SLEEP_TO)
 
+# Для тестовых запусков
 def test_run(module):
     wallets = getWallets()
     for _, account in enumerate(wallets, start=1):
