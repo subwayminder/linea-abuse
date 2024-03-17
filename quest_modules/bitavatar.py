@@ -3,6 +3,7 @@ from .account import Account
 from typing import Union
 from utils.gas_checker import check_gas
 from utils.helpers import retry
+from loguru import logger
 
 
 class BitAvatar(Account):
