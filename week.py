@@ -22,7 +22,7 @@ WEEK_ONE = [
     runTownStorySignUp,
     runTownStoryMintNft,
     runSidusNft,
-    runSidiusReleaseNft
+    runSidiusReleaseNft,
 ]
 WEEK_TWO = [
     runPictographMintNft,
@@ -36,14 +36,33 @@ WEEK_THREE = [
     runEmeraldMintNft,
     runReadonCurate,
     runSendingMeTx,
-    runAbyssNftMint
+    runAbyssNftMint,
 ]
 WEEK_FOUR = [
     runTanukiNftMint,
-    runLuckyCat
+    runLuckyCat,
 ]
 WEEK_FIVE = []
 WEEK_SIX = []
+ALL_IN = [
+    runGamerBoomSign,
+    runTownStorySignUp,
+    runTownStoryMintNft,
+    runSidusNft,
+    runSidiusReleaseNft,
+    runPictographMintNft,
+    runSatoshiNftMint,
+    runAbyssNftMint,
+    runDmailSend,
+    runBitAvatarCheckIn,
+    runGamicDepositWeth,
+    runEmeraldMintNft,
+    runReadonCurate,
+    runSendingMeTx,
+    runAbyssNftMint,
+    runTanukiNftMint,
+    runLuckyCat,
+]
 
 def getWallets():
     if USE_PROXY:
@@ -74,6 +93,7 @@ def get_week():
             Choice("2-я неделя", WEEK_TWO),
             Choice("3-я неделя", WEEK_THREE),
             Choice("4-я неделя", WEEK_FOUR),
+            Choice("Все недели", ALL_IN),
             Choice("Exit", "exit"),
         ],
         qmark="⚙️ ",
