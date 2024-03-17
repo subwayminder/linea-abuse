@@ -16,6 +16,7 @@ class Pictograph(Account):
     @check_gas
     @retry
     async def mintNft(self):
+        logger.info(f"[{self.account_id}][{self.address}] Минт Pictograph")
         balance = await self.contract.functions.balanceOf(self.address).call()
         if (balance == 0):
             price = await self.contract.functions.price().call()
@@ -25,4 +26,4 @@ class Pictograph(Account):
             txHash = await self.send_raw_transaction(signedTx)
             await self.wait_until_tx_finished(txHash.hex())
         else:
-            logger.info("Pictogram NFT уже сминчена")
+            logger.info(f"[{self.account_id}][{self.address}] Pictogram NFT уже сминчена")

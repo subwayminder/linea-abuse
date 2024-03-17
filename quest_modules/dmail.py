@@ -16,6 +16,7 @@ class Dmail(Account):
     @check_gas
     @retry
     async def sendMail(self):
+        logger.info(f"[{self.account_id}][{self.address}] Отправка dmail")
         txData = await self.getTxData()
         email = sha256(str(1e11 * random.random()).encode()).hexdigest()
         theme = sha256(str(1e11 * random.random()).encode()).hexdigest()

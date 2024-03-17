@@ -15,6 +15,7 @@ class EmeraldNft(Account):
     @check_gas
     @retry
     async def mintNft(self):
+        logger.info(f"[{self.account_id}][{self.address}] Минт emerald nft")
         balance = await self.contract.functions.balanceOf(self.address).call()
         if(balance == 0):
             txData = await self.getTxData(100000000000000)

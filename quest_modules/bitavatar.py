@@ -12,6 +12,7 @@ class BitAvatar(Account):
     @check_gas
     @retry
     async def checkIn(self):
+        logger.info(f"[{self.account_id}][{self.address}] BitAvatar check-in")
         txData = await self.getTxData()
         tx = await self.contract.functions.checkIn().build_transaction(txData)
         signedTx = await self.sign(tx)

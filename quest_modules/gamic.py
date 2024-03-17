@@ -16,6 +16,7 @@ class Gamic(Account):
     @check_gas
     @retry
     async def depositWeth(self):
+        logger.info(f"[{self.account_id}][{self.address}] Gamic WETH депозит")
         amount_wei, amount, balance = await self.getAmount(
             "ETH",
             0.000001,

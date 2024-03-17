@@ -17,6 +17,7 @@ class ReadOn(Account):
     @check_gas
     @retry
     async def curate(self):
+        logger.info(f"[{self.account_id}][{self.address}] Курирование на ReadOn")
         txData = await self.getTxData()
         url = uuid.uuid1().int>>64
         tx = await self.contract.functions.curate(url).build_transaction(txData)

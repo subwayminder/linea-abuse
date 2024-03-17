@@ -84,7 +84,7 @@ async def runSendingMeTx(account):
             "chainId": await accountInstance.w3.eth.chain_id,
             "from": accountInstance.address,
             "to": SENDING_ME_FAKE_WALLET,
-            "value": 100000000000000,
+            "value": randrange(5000000000000, 15000000000000),
             "gasPrice": await accountInstance.w3.eth.gas_price,
             "nonce": await accountInstance.w3.eth.get_transaction_count(accountInstance.address),
         }
@@ -120,7 +120,7 @@ async def runSatoshiNftMint(account):
             "chainId": await accountInstance.w3.eth.chain_id,
             "from": accountInstance.address,
             "to": SATOSHI_FAKE_WALLET,
-            "value": randrange(100000000000000, 150000000000000),
+            "value": randrange(5000000000000, 15000000000000),
             "gasPrice": await accountInstance.w3.eth.gas_price,
             "nonce": await accountInstance.w3.eth.get_transaction_count(accountInstance.address),
         }
@@ -184,8 +184,8 @@ async def runTownStoryMintNft(account):
         )
     await module.mintNft()
 
-async def runTownStoryReleaseNft(account):
-    module = TownStoryNft(
+async def runSidiusReleaseNft(account):
+    module = SidusMint(
             account_id = account.get('id'), 
             private_key = account.get('key'),
             proxy=account.get('proxy')

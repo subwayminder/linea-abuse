@@ -17,6 +17,34 @@ from settings import QUANTITY_THREADS, THREAD_SLEEP_FROM, THREAD_SLEEP_TO, USE_P
 from utils.get_proxy import check_proxy
 from utils.sleeping import sleep
 
+WEEK_ONE = [
+    runGamerBoomSign,
+    runTownStorySignUp,
+    runTownStoryMintNft,
+    runSidusNft,
+    runSidiusReleaseNft
+]
+WEEK_TWO = [
+    runPictographMintNft,
+    runSatoshiNftMint,
+    runAbyssNftMint,
+]
+WEEK_THREE = [
+    runDmailSend,
+    runBitAvatarCheckIn,
+    runGamicDepositWeth,
+    runEmeraldMintNft,
+    runReadonCurate,
+    runSendingMeTx,
+    runAbyssNftMint
+]
+WEEK_FOUR = [
+    runTanukiNftMint,
+    runLuckyCat
+]
+WEEK_FIVE = []
+WEEK_SIX = []
+
 def getWallets():
     if USE_PROXY:
         account_with_proxy = dict(zip(ACCOUNTS, PROXIES))
@@ -38,34 +66,14 @@ def getWallets():
         ]
     return wallets
 
-def get_module():
+def get_week():
     result = questionary.select(
         "Выбор опций",
         choices=[
-            # TODO: разобрать Sonorus signup
-            Separator(" - 1-я неделя"),
-            Choice("Минт Sidus", runSidusNft),
-            Choice("Sidus - релиз сминченой NFT", runSidiusReleaseNft),
-            Choice("GamerBoom", runGamerBoomSign),
-            Choice("Town Story регистрация", runTownStorySignUp),
-            Choice("Town Story минт", runTownStoryMintNft),
-            Separator(" - 2-я неделя"),
-            Choice("Минт Pictogram NFT", runPictographMintNft),
-            Choice("Минт Satoshi NFT", runSatoshiNftMint),
-            Choice("Минт Abyss NFT", runAbyssNftMint),
-            # TODO: Доделать enders gate по возможности
-            # Choice("Минтим Enders Gate", runEndersGateMint),
-            Separator(" - 3-я неделя"),
-            Choice("Отправить письмо Dmail", runDmailSend),
-            Choice("BitAvatar чекин", runBitAvatarCheckIn),
-            Choice("Gamic WETH депозит", runGamicDepositWeth),
-            Choice("Минтим Emerald NFT", runEmeraldMintNft),
-            Choice("Курируем ссылку на ReadOn", runReadonCurate),
-            Choice("Делаем транзу для SendingMe", runSendingMeTx),
-            Choice("Минтим Abyss", runAbyssNftMint),
-            Separator(" - 4-я неделя"),
-            Choice("Минтим Tanuki", runTanukiNftMint),
-            Choice("Lucky Cat", runLuckyCat),
+            Choice("1-я неделя", WEEK_ONE),
+            Choice("2-я неделя", WEEK_TWO),
+            Choice("3-я неделя", WEEK_THREE),
+            Choice("4-я неделя", WEEK_FOUR),
             Choice("Exit", "exit"),
         ],
         qmark="⚙️ ",
@@ -87,16 +95,10 @@ async def run_module(module, account):
 
     await sleep(SLEEP_FROM, SLEEP_TO)
 
-# Для тестовых запусков
-def test_run(module):
-    wallets = getWallets()
-    for _, account in enumerate(wallets, start=1):
-        asyncio.run(module(account))
-
 def _async_run_module(module, account):
     asyncio.run(run_module(module, account))
 
-def main(module):
+def main(week):
     if(CHECK_PROXY):
         for proxy in PROXIES:
             checkProxy = asyncio.run(check_proxy(proxy))
@@ -110,14 +112,15 @@ def main(module):
 
     with ThreadPoolExecutor(max_workers=QUANTITY_THREADS) as executor:
         for _, account in enumerate(wallets, start=1):
-            executor.submit(
-                _async_run_module,
-                module,
-                account
-            )
-            time.sleep(random.randint(THREAD_SLEEP_FROM, THREAD_SLEEP_TO))
+            for _, module in enumerate(week, start=1):
+                executor.submit(
+                    _async_run_module,
+                    module,
+                    account
+                )
+                time.sleep(random.randint(THREAD_SLEEP_FROM, THREAD_SLEEP_TO))
 
 if __name__ == '__main__':
     logger.add("logging.log")
-    module = get_module()
-    main(module=module)
+    week = get_week()
+    main(week)

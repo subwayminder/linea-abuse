@@ -17,7 +17,7 @@ class SidusMint(Account):
     
     
     def getAccessToken(self):
-        sidusAuth = requests.get("https://auth.sidusheroes.com/api/v1/users/" + str(self.address).upper())
+        sidusAuth = requests.get("https://auth.sidusheroes.com/api/v1/users/" + self.address)
         if(sidusAuth.status_code == 404):
             sidusAuth = requests.post("https://auth.sidusheroes.com/api/v1/users/", json={
                 "address": self.address
@@ -59,7 +59,7 @@ class SidusMint(Account):
         if (claimPayload.status_code == 400):
             logger.info(f"[{self.account_id}][{self.address}] МинтSidus сейчас недоступен")
         else:
-            balance = await self.contract.functions.balanceOf(str(self.address).upper(), 9).call()
+            balance = await self.contract.functions.balanceOf(self.address, 9).call()
             if (balance == 0):
                 claimPayload = claimPayload.json()
                 message = claimPayload['message']
@@ -74,10 +74,10 @@ class SidusMint(Account):
                 logger.info(f"[{self.account_id}][{self.address}] МинтSidus - NFT уже сминчена")
 
     async def releaseNft(self):
-            balance = await self.contract.functions.balanceOf(str(self.address).upper(), 9).call()
+            balance = await self.contract.functions.balanceOf(self.address, 9).call()
             if (balance != 0):
                 txData = await self.getTxData()
-                tx = await self.contract.functions.burn(str(self.address).upper(), 9, 1).build_transaction(txData)
+                tx = await self.contract.functions.burn(self.address, 9, 1).build_transaction(txData)
                 signedTx = await self.sign(tx)
                 txHash = await self.send_raw_transaction(signedTx)
                 await self.wait_until_tx_finished(txHash.hex())
