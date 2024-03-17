@@ -110,8 +110,8 @@ async def run_module(module, account):
     except Exception as e:
         logger.error(f"[{module}] " + e)
 
-    if REMOVE_WALLET:
-        remove_wallet(key)
+    # if REMOVE_WALLET:
+    #     remove_wallet(key)
 
     await sleep(SLEEP_FROM, SLEEP_TO)
 
