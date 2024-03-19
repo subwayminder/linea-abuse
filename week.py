@@ -42,7 +42,10 @@ WEEK_FOUR = [
     runTanukiNftMint,
     runLuckyCat,
 ]
-WEEK_FIVE = []
+WEEK_FIVE = [
+    runBattlemonMintNft,
+    runNftBadgeMint
+]
 WEEK_SIX = []
 ALL_IN = [
     runGamerBoomSign,
@@ -62,6 +65,8 @@ ALL_IN = [
     runAbyssNftMint,
     runTanukiNftMint,
     runLuckyCat,
+    runBattlemonMintNft,
+    runNftBadgeMint,
 ]
 
 def getWallets():
@@ -93,6 +98,7 @@ def get_week():
             Choice("2-я неделя", WEEK_TWO),
             Choice("3-я неделя", WEEK_THREE),
             Choice("4-я неделя", WEEK_FOUR),
+            Choice("5-я неделя", WEEK_FIVE),
             Choice("Все недели", ALL_IN),
             Choice("Exit", "exit"),
         ],

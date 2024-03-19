@@ -111,3 +111,11 @@ with open('quest_modules/data/town_story.json') as file:
 TOWN_STORY_NFT_CONTRACT = '0xD41aC492FEDC671Eb965707d1DEDad4EB7B6EfC5'
 with open('quest_modules/data/town_story_nft.json') as file:
     TOWN_STORY_NFT_ABI = json.load(file)
+
+NFT_BADGE_CONTRACT = '0x7136Abb0fa3d88E4B4D4eE58FC1dfb8506bb7De7'
+with open('quest_modules/data/nft_badge.json') as file:
+    NFT_BADGE_ABI = json.load(file)
+
+BATTLEMON_NFT_CONTRACT = '0x578705C60609C9f02d8B7c1d83825E2F031e35AA'
+with open('quest_modules/data/battlemon.json') as file:
+    BATTLEMON_NFT_ABI = json.load(file)

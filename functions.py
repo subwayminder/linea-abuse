@@ -14,6 +14,8 @@ from quest_modules.week1.sidus import SidusMint
 from quest_modules.week1.gamer_boom import GamerBoom
 from quest_modules.week1.town_story import TownStory
 from quest_modules.week1.town_story_nft import TownStoryNft
+from quest_modules.week5.ntf_badge import NftBadge
+from quest_modules.week5.battlemon import BattlemonNft
 from config import SENDING_ME_FAKE_WALLET, SATOSHI_FAKE_WALLET
 from eth_account.messages import encode_defunct
 from utils.gas_checker import check_gas
@@ -191,3 +193,19 @@ async def runSidiusReleaseNft(account):
             proxy=account.get('proxy')
         )
     await module.releaseNft()
+
+async def runBattlemonMintNft(account):
+    module = BattlemonNft(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mintNft()
+
+async def runNftBadgeMint(account):
+    module = NftBadge(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mintNft()
