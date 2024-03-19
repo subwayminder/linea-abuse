@@ -48,8 +48,8 @@ class TownStory(Account):
         })
         loginResponse = loginRequest.json()
         if('signature' in loginResponse['response']):
-            signForSignUp = loginRequest.json()['response']['signature']
-            deadline = loginRequest.json()['response']['deadline']
+            signForSignUp = loginRequest['response']['signature']
+            deadline = loginRequest['response']['deadline']
             txData = await self.getTxData()
             tx = await self.contract.functions.createAccountSign(signForSignUp, 0, int(deadline)).build_transaction(txData)
             signedTx = await self.sign(tx)
