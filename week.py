@@ -124,6 +124,10 @@ async def run_module(module, account):
 def _async_run_module(module, account):
     asyncio.run(run_module(module, account))
 
+def run_account(weel, account):
+    for _, module in enumerate(week, start=1):
+        _async_run_module(module, account)
+
 def main(week):
     if(CHECK_PROXY):
         for proxy in PROXIES:
@@ -138,13 +142,12 @@ def main(week):
 
     with ProcessPoolExecutor(max_workers=QUANTITY_THREADS) as executor:
         for _, account in enumerate(wallets, start=1):
-            for _, module in enumerate(week, start=1):
-                executor.submit(
-                    _async_run_module,
-                    module,
-                    account
-                )
-                time.sleep(random.randint(THREAD_SLEEP_FROM, THREAD_SLEEP_TO))
+            executor.submit(
+            run_account,
+            week,
+            account
+            )
+            time.sleep(random.randint(THREAD_SLEEP_FROM, THREAD_SLEEP_TO))
 
 if __name__ == '__main__':
     logger.add("logging.log")
