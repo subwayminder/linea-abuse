@@ -15,10 +15,10 @@ class TanukiNft(Account):
     @check_gas
     @retry
     async def mintNft(self):
+        logger.info(f"[{self.account_id}][{self.address}] Минт Tanuki")
         balance = await self.contract.functions.balanceOf(self.address).call()
-        print(balance)
         if(balance == 0):
-            txData = await self.getTxData(100000000000000)
+            txData = await self.getTxData()
             tx = await self.contract.functions.purchase(1).build_transaction(txData)
             signedTx = await self.sign(tx)
             txHash = await self.send_raw_transaction(signedTx)

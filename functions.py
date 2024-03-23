@@ -10,12 +10,14 @@ from quest_modules.week2.enders_gate import EndersGate
 from quest_modules.week2.yooldoo import Yooldoo
 from quest_modules.week4.tanuki import TanukiNft
 from quest_modules.week4.lucky_cat import LuckyCat
+from quest_modules.week4.tomo import TomoNft
 from quest_modules.week1.sidus import SidusMint
 from quest_modules.week1.gamer_boom import GamerBoom
 from quest_modules.week1.town_story import TownStory
 from quest_modules.week1.town_story_nft import TownStoryNft
 from quest_modules.week5.ntf_badge import NftBadge
 from quest_modules.week5.battlemon import BattlemonNft
+from quest_modules.week5.unfettered_expedition import UnfetteredExpeditionNft
 from config import SENDING_ME_FAKE_WALLET, SATOSHI_FAKE_WALLET
 from eth_account.messages import encode_defunct
 from utils.gas_checker import check_gas
@@ -74,8 +76,6 @@ async def runReadonCurate(account):
         )
     await readonModule.curate()
     
-@check_gas
-@retry
 async def runSendingMeTx(account):
     accountInstance = Account(
             account_id = account.get('id'), 
@@ -110,8 +110,6 @@ async def runEndersGateMint(account):
         )
     await endersNftModule.mintNft()
 
-@check_gas
-@retry
 async def runSatoshiNftMint(account):
     accountInstance = Account(
             account_id = account.get('id'), 
@@ -204,6 +202,22 @@ async def runBattlemonMintNft(account):
 
 async def runNftBadgeMint(account):
     module = NftBadge(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mintNft()
+
+async def runTomoNft(account):
+    module = TomoNft(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mintNft()
+
+async def runUnfetteredExpedition(account):
+    module = UnfetteredExpeditionNft(
             account_id = account.get('id'), 
             private_key = account.get('key'),
             proxy=account.get('proxy')

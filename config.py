@@ -119,3 +119,11 @@ with open('quest_modules/data/nft_badge.json') as file:
 BATTLEMON_NFT_CONTRACT = '0x578705C60609C9f02d8B7c1d83825E2F031e35AA'
 with open('quest_modules/data/battlemon.json') as file:
     BATTLEMON_NFT_ABI = json.load(file)
+
+TOMO_CONTRACT = '0x9E813d7661D7B56CBCd3F73E958039B208925Ef8'
+with open('quest_modules/data/tomo.json') as file:
+    TOMO_ABI = json.load(file)
+
+UNFETTERED_EXPEDITION_NFT_CONTRACT = '0x2dC9D44eC35d5DEfD146e5fD718eE3277dfaCF0A'
+with open('quest_modules/data/mint.json') as file:
+    UNFETTERED_EXPEDITION_NFT_ABI = json.load(file)
