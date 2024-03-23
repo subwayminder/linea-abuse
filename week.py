@@ -36,7 +36,6 @@ WEEK_THREE = [
     runEmeraldMintNft,
     runReadonCurate,
     runSendingMeTx,
-    runAbyssNftMint,
 ]
 WEEK_FOUR = [
     runTanukiNftMint,
@@ -60,7 +59,6 @@ ALL_IN = [
     runEmeraldMintNft,
     runReadonCurate,
     runSendingMeTx,
-    runAbyssNftMint,
     runTanukiNftMint,
     runLuckyCat,
     runBattlemonMintNft,
