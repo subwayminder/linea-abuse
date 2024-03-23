@@ -21,8 +21,8 @@ WEEK_ONE = [
     runGamerBoomSign,
     runTownStorySignUp,
     runTownStoryMintNft,
-    runSidusNft,
-    runSidiusReleaseNft,
+    # runSidusNft,
+    # runSidiusReleaseNft,
 ]
 WEEK_TWO = [
     runPictographMintNft,
