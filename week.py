@@ -51,8 +51,6 @@ ALL_IN = [
     runGamerBoomSign,
     runTownStorySignUp,
     runTownStoryMintNft,
-    runSidusNft,
-    runSidiusReleaseNft,
     runPictographMintNft,
     runSatoshiNftMint,
     runAbyssNftMint,
