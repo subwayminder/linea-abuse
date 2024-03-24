@@ -136,7 +136,7 @@ def main(week):
     if RANDOM_WALLET:
         random.shuffle(wallets)
 
-    with ProcessPoolExecutor(max_workers=QUANTITY_THREADS) as executor:
+    with ThreadPoolExecutor(max_workers=QUANTITY_THREADS) as executor:
         for _, account in enumerate(wallets, start=1):
             executor.submit(
             run_account,
