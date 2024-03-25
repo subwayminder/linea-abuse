@@ -122,7 +122,6 @@ def main(module):
             time.sleep(random.randint(THREAD_SLEEP_FROM, THREAD_SLEEP_TO))
 
 if __name__ == '__main__':
-    # logger.add("logging.log")
-    # module = get_module()
-    # main(module=module)
-    test_run(runTownStorySignUp)
+    logger.add("logging.log")
+    module = get_module()
+    main(module=module)
