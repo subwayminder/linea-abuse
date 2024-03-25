@@ -1,23 +1,29 @@
-from config import YOOLDOO_CONTRACT, YOOLDOO_ABI
-from ..account import Account
+from .account import Account
 from typing import Union
 from hashlib import sha256
 from typing import Union
 from loguru import logger
+from hexbytes import HexBytes
 from utils.gas_checker import check_gas
 from utils.helpers import retry
+from config import SENDING_ME_FAKE_WALLET
+from random import randrange
 
-# TODO: не работает, допилить по возможности
-class Yooldoo(Account):
+class SendingMeTx(Account):
     def __init__(self, account_id: int, private_key: str, proxy: Union[None, str]) -> None:
         super().__init__(account_id=account_id, private_key=private_key, proxy=proxy)
-        self.contract = self.get_contract(YOOLDOO_CONTRACT, YOOLDOO_ABI)
 
     @check_gas
     @retry
-    async def run(self):
-        txData = await self.getTxData(value=2000000000000)
-        tx = await self.contract.functions.standUp().build_transaction(txData)
+    async def fakeTx(self):
+        tx = {
+            "chainId": await self.w3.eth.chain_id,
+            "from": self.address,
+            "to": SENDING_ME_FAKE_WALLET,
+            "value": randrange(5000000000000, 15000000000000),
+            "gasPrice": await self.w3.eth.gas_price,
+            "nonce": await self.w3.eth.get_transaction_count(self.address),
+        }
         signedTx = await self.sign(tx)
         txHash = await self.send_raw_transaction(signedTx)
         await self.wait_until_tx_finished(txHash.hex())

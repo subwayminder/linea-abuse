@@ -7,6 +7,7 @@ from loguru import logger
 from utils.gas_checker import check_gas
 from utils.helpers import retry
 
+# TODO: Допилить по возможности
 class TomoNft(Account):
     def __init__(self, account_id: int, private_key: str, proxy: Union[None, str]) -> None:
         super().__init__(account_id=account_id, private_key=private_key, proxy=proxy)

@@ -4,10 +4,12 @@ from quest_modules.week2.pictograph import Pictograph
 from quest_modules.gamic import Gamic
 from quest_modules.emerald_nft import EmeraldNft
 from quest_modules.readon import ReadOn
+from quest_modules.sending_me import SendingMeTx
 from quest_modules.account import Account
 from quest_modules.week2.abyss_nft import AbyssNft
 from quest_modules.week2.enders_gate import EndersGate
 from quest_modules.week2.yooldoo import Yooldoo
+from quest_modules.week2.satoshi import SatoshiTx
 from quest_modules.week4.tanuki import TanukiNft
 from quest_modules.week4.lucky_cat import LuckyCat
 from quest_modules.week4.tomo import TomoNft
@@ -77,22 +79,12 @@ async def runReadonCurate(account):
     await readonModule.curate()
     
 async def runSendingMeTx(account):
-    accountInstance = Account(
+    module = SendingMeTx(
             account_id = account.get('id'), 
             private_key = account.get('key'),
             proxy=account.get('proxy')
         )
-    tx = {
-            "chainId": await accountInstance.w3.eth.chain_id,
-            "from": accountInstance.address,
-            "to": SENDING_ME_FAKE_WALLET,
-            "value": randrange(5000000000000, 15000000000000),
-            "gasPrice": await accountInstance.w3.eth.gas_price,
-            "nonce": await accountInstance.w3.eth.get_transaction_count(accountInstance.address),
-        }
-    signedTx = await accountInstance.sign(tx)
-    txHash = await accountInstance.send_raw_transaction(signedTx)
-    await accountInstance.wait_until_tx_finished(txHash.hex())
+    await module.fakeTx()
 
 async def runAbyssNftMint(account):
     abyssModule = AbyssNft(
@@ -111,22 +103,12 @@ async def runEndersGateMint(account):
     await endersNftModule.mintNft()
 
 async def runSatoshiNftMint(account):
-    accountInstance = Account(
+    module = SatoshiTx(
             account_id = account.get('id'), 
             private_key = account.get('key'),
             proxy=account.get('proxy')
         )
-    tx = {
-            "chainId": await accountInstance.w3.eth.chain_id,
-            "from": accountInstance.address,
-            "to": SATOSHI_FAKE_WALLET,
-            "value": randrange(5000000000000, 15000000000000),
-            "gasPrice": await accountInstance.w3.eth.gas_price,
-            "nonce": await accountInstance.w3.eth.get_transaction_count(accountInstance.address),
-        }
-    signedTx = await accountInstance.sign(tx)
-    txHash = await accountInstance.send_raw_transaction(signedTx)
-    await accountInstance.wait_until_tx_finished(txHash.hex())
+    await module.fakeTx()
 
 async def runYooldoo(account):
     module = Yooldoo(

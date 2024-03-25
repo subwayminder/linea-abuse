@@ -14,7 +14,7 @@ class UnfetteredExpeditionNft(Account):
         self.contract = self.get_contract(UNFETTERED_EXPEDITION_NFT_CONTRACT, UNFETTERED_EXPEDITION_NFT_ABI)
 
     @check_gas
-    # @retry
+    @retry
     async def mintNft(self):
         logger.info(f"[{self.account_id}][{self.address}] Минт Unfettered expedition nft (Осторожно - нет проверки на владение)")
         txData = await self.getTxData()

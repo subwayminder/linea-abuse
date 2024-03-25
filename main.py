@@ -95,6 +95,7 @@ def test_run(module):
     wallets = getWallets()
     for _, account in enumerate(wallets, start=1):
         asyncio.run(module(account))
+        sys.exit('hui')
 
 def _async_run_module(module, account):
     asyncio.run(run_module(module, account))
@@ -121,6 +122,7 @@ def main(module):
             time.sleep(random.randint(THREAD_SLEEP_FROM, THREAD_SLEEP_TO))
 
 if __name__ == '__main__':
-    logger.add("logging.log")
-    module = get_module()
-    main(module=module)
+    # logger.add("logging.log")
+    # module = get_module()
+    # main(module=module)
+    test_run(runTownStorySignUp)

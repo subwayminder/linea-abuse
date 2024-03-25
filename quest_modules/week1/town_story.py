@@ -27,8 +27,8 @@ class TownStory(Account):
         sign = self.w3.eth.account.sign_message(message, private_key=self.private_key).signature
         return sign
 
-    # @retry
-    # @check_gas
+    @retry
+    @check_gas
     async def signUp(self):
         logger.info(f"[{self.account_id}][{self.address}] Регистрация в Town Story")
         sign = self.getSign().hex()
@@ -58,9 +58,9 @@ class TownStory(Account):
             signedTx = await self.sign(tx)
             txHash = await self.send_raw_transaction(signedTx)
             await self.wait_until_tx_finished(txHash.hex())
-        elif('sig' in loginResponse['response']):
+        elif('sig' in loginResponse['response']['auth']):
             logger.info(f"[{self.account_id}][{self.address}] Регистрация в Town Story - уже зарегистрирован")
         elif('failed' in loginResponse):
-            logger.error(f"[{self.account_id}][{self.address}] Регистрация в Town Story - ошибка регистрации")
+            raise RuntimeError('Регистрация в Town Story - ошибка регистрации')
         else:
-            logger.error(f"[{self.account_id}][{self.address}] Регистрация в Town Story - ошибка регистрации")
+            raise RuntimeError('Регистрация в Town Story - ошибка регистрации')
