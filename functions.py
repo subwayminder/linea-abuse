@@ -12,6 +12,7 @@ from quest_modules.week2.yooldoo import Yooldoo
 from quest_modules.week2.satoshi import SatoshiTx
 from quest_modules.week4.tanuki import TanukiNft
 from quest_modules.week4.lucky_cat import LuckyCat
+from quest_modules.week4.zypher import Zypher
 from quest_modules.week4.tomo import TomoNft
 from quest_modules.week1.sidus import SidusMint
 from quest_modules.week1.gamer_boom import GamerBoom
@@ -19,7 +20,18 @@ from quest_modules.week1.town_story import TownStory
 from quest_modules.week1.town_story_nft import TownStoryNft
 from quest_modules.week5.ntf_badge import NftBadge
 from quest_modules.week5.battlemon import BattlemonNft
+from quest_modules.week5.nouns import Nouns
 from quest_modules.week5.unfettered_expedition import UnfetteredExpeditionNft
+from quest_modules.week6.zace import Zace
+from quest_modules.week6.micro3 import Micro3
+from quest_modules.week6.alien_linea import AlienLinea
+from quest_modules.week6.alien_listing import AlienListing
+from quest_modules.week6.frog_war import FrogWar
+from quest_modules.week6.frog_war_warrior import FrogWarWarrior
+from quest_modules.week6.acg_worlds import AcgWorlds
+from quest_modules.week6.imaginarly import Imaginalry
+from quest_modules.week6.arena import ArenaNft
+from quest_modules.week6.element import ElementNft
 from config import SENDING_ME_FAKE_WALLET, SATOSHI_FAKE_WALLET
 from eth_account.messages import encode_defunct
 from utils.gas_checker import check_gas
@@ -53,6 +65,14 @@ async def runPictographMintNft(account):
             proxy=account.get('proxy')
         )
     await pictographModule.mintNft()
+
+async def runPictographStake(account):
+    pictographModule = Pictograph(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await pictographModule.stake()
 
 async def runGamicDepositWeth(account):
     gamicModule = Gamic(
@@ -116,7 +136,7 @@ async def runYooldoo(account):
             private_key = account.get('key'),
             proxy=account.get('proxy')
         )
-    await module.run()
+    await module.runStandUp()
 
 async def runTanukiNftMint(account):
     module = TanukiNft(
@@ -190,6 +210,14 @@ async def runNftBadgeMint(account):
         )
     await module.mintNft()
 
+async def runNounsClaim(account):
+    module = Nouns(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.claim()
+
 async def runTomoNft(account):
     module = TomoNft(
             account_id = account.get('id'), 
@@ -205,3 +233,99 @@ async def runUnfetteredExpedition(account):
             proxy=account.get('proxy')
         )
     await module.mintNft()
+
+async def runZypher(account):
+    module = Zypher(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.runTx()
+
+async def runZaceMint(account):
+    module = Zace(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mintZace()
+
+async def runMicro3Mint(account):
+    module = Micro3(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mintNft()
+
+async def runAlienLineaMint(account):
+    module = AlienLinea(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mintNft()
+
+async def runAlienListing(account):
+    module = AlienListing(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.runListing()
+
+async def runFrogWarMint(account):
+    module = FrogWar(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mintFrogWar()
+
+async def runFrogWarWarriorMint(account):
+    module = FrogWarWarrior(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mintFrogWarWarrior()
+
+async def runFrogWarWarriorSendToBattle(account):
+    module = FrogWarWarrior(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.sendToBattle()
+
+async def runAcgWorldsMint(account):
+    module = AcgWorlds(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mint()
+
+async def runImaginalryMint(account):
+    module = Imaginalry(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mint()
+
+async def runArenaMint(account):
+    module = ArenaNft(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mint()
+
+async def runElementMint(account):
+    module = ElementNft(
+            account_id = account.get('id'), 
+            private_key = account.get('key'),
+            proxy=account.get('proxy')
+        )
+    await module.mint()

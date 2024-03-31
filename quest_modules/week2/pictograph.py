@@ -27,3 +27,14 @@ class Pictograph(Account):
             await self.wait_until_tx_finished(txHash.hex())
         else:
             logger.info(f"[{self.account_id}][{self.address}] Pictogram NFT уже сминчена")
+
+    @check_gas
+    @retry
+    async def stake(self):
+        logger.info(f"[{self.account_id}][{self.address}] Стейкаем Pictograph")
+        nft_id = await self.contract.functions.tokenOfOwnerByIndex(self.address, 0).call()
+        txData = await self.getTxData()
+        tx = await self.contract.functions.stake(nft_id).build_transaction(txData)
+        signedTx = await self.sign(tx)
+        txHash = await self.send_raw_transaction(signedTx)
+        await self.wait_until_tx_finished(txHash.hex())

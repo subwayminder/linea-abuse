@@ -51,10 +51,10 @@ def get_module():
             Choice("Town Story минт", runTownStoryMintNft),
             Separator(" - 2-я неделя"),
             Choice("Минт Pictogram NFT", runPictographMintNft),
+            Choice("Стейкинг Pictogram", runPictographStake),
             Choice("Минт Satoshi NFT", runSatoshiNftMint),
             Choice("Минт Abyss NFT", runAbyssNftMint),
-            # TODO: Доделать enders gate по возможности
-            # Choice("Минтим Enders Gate", runEndersGateMint),
+            Choice("Yooldoo Stand Up", runYooldoo),
             Separator(" - 3-я неделя"),
             Choice("Отправить письмо Dmail", runDmailSend),
             Choice("BitAvatar чекин", runBitAvatarCheckIn),
@@ -62,13 +62,26 @@ def get_module():
             Choice("Минтим Emerald NFT", runEmeraldMintNft),
             Choice("Курируем ссылку на ReadOn", runReadonCurate),
             Choice("Делаем транзу для SendingMe", runSendingMeTx),
-            Choice("Минтим Abyss", runAbyssNftMint),
             Separator(" - 4-я неделя"),
             Choice("Минтим Tanuki", runTanukiNftMint),
             Choice("Lucky Cat", runLuckyCat),
+            Choice("Lucky Cat", runZypher),
             Separator(" - 5-я неделя"),
             Choice("Минтим Battlemon Nft", runBattlemonMintNft),
             Choice("Минтим Nft Badge", runNftBadgeMint),
+            Choice("Клеймим Nouns", runNounsClaim),
+            Separator(" - 6-я неделя"),
+            Choice("Минтим Zace", runZaceMint),
+            Choice("Минтим Micro3", runMicro3Mint),
+            Choice("Минтим Alien Linea", runAlienLineaMint),
+            Choice("Листинг на Alien", runAlienListing),
+            Choice("Минт Frog War", runFrogWarMint),
+            Choice("Минт Frog War Warrior", runFrogWarWarriorMint),
+            Choice("Frog War Warrior - send to battle", runFrogWarWarriorSendToBattle),
+            Choice("Минт Acg Worlds", runAcgWorldsMint),
+            Choice("Минт Imaginalry", runImaginalryMint),
+            Choice("Минт Arena", runArenaMint),
+            # Choice("Минт через Element", runElementMint),
             Choice("Exit", "exit"),
         ],
         qmark="⚙️ ",
@@ -95,7 +108,7 @@ def test_run(module):
     wallets = getWallets()
     for _, account in enumerate(wallets, start=1):
         asyncio.run(module(account))
-        sys.exit('hui')
+        sys.exit('Bye')
 
 def _async_run_module(module, account):
     asyncio.run(run_module(module, account))

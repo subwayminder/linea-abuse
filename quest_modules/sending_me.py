@@ -1,7 +1,6 @@
 from .account import Account
 from typing import Union
 from hashlib import sha256
-from typing import Union
 from loguru import logger
 from hexbytes import HexBytes
 from utils.gas_checker import check_gas
@@ -16,6 +15,7 @@ class SendingMeTx(Account):
     @check_gas
     @retry
     async def fakeTx(self):
+        logger.info(f"[{self.account_id}][{self.address}] Sending me")
         tx = {
             "chainId": await self.w3.eth.chain_id,
             "from": self.address,

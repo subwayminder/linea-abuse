@@ -16,6 +16,7 @@ class SatoshiTx(Account):
     @check_gas
     @retry
     async def fakeTx(self):
+        logger.info(f"[{self.account_id}][{self.address}] Satoshi")
         tx = {
             "chainId": await self.w3.eth.chain_id,
             "from": self.address,

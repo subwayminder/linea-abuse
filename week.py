@@ -21,13 +21,15 @@ WEEK_ONE = [
     runGamerBoomSign,
     runTownStorySignUp,
     runTownStoryMintNft,
-    # runSidusNft,
-    # runSidiusReleaseNft,
+    runSidusNft,
+    runSidiusReleaseNft,
 ]
 WEEK_TWO = [
     runPictographMintNft,
+    runPictographStake,
     runSatoshiNftMint,
     runAbyssNftMint,
+    runYooldoo
 ]
 WEEK_THREE = [
     runDmailSend,
@@ -40,17 +42,32 @@ WEEK_THREE = [
 WEEK_FOUR = [
     runTanukiNftMint,
     runLuckyCat,
+    runZypher
 ]
 WEEK_FIVE = [
     runBattlemonMintNft,
-    runNftBadgeMint
+    runNftBadgeMint,
+    runNounsClaim
 ]
-WEEK_SIX = []
+WEEK_SIX = [
+    runZaceMint,
+    runMicro3Mint,
+    runAlienLineaMint,
+    runAlienListing,
+    runFrogWarMint,
+    runFrogWarWarriorMint,
+    runFrogWarWarriorSendToBattle,
+    runAcgWorldsMint,
+    runImaginalryMint,
+    runArenaMint
+]
 ALL_IN = [
     runGamerBoomSign,
     runTownStorySignUp,
     runTownStoryMintNft,
     runPictographMintNft,
+    runPictographStake,
+    runYooldoo,
     runSatoshiNftMint,
     runAbyssNftMint,
     runDmailSend,
@@ -63,6 +80,17 @@ ALL_IN = [
     runLuckyCat,
     runBattlemonMintNft,
     runNftBadgeMint,
+    runNounsClaim,
+    runZaceMint,
+    runMicro3Mint,
+    runAlienLineaMint,
+    runAlienListing,
+    runFrogWarMint,
+    runFrogWarWarriorMint,
+    runFrogWarWarriorSendToBattle,
+    runAcgWorldsMint,
+    runImaginalryMint,
+    runArenaMint,
 ]
 
 def getWallets():
@@ -95,6 +123,7 @@ def get_week():
             Choice("3-я неделя", WEEK_THREE),
             Choice("4-я неделя", WEEK_FOUR),
             Choice("5-я неделя", WEEK_FIVE),
+            Choice("5-я неделя", WEEK_SIX),
             Choice("Все недели", ALL_IN),
             Choice("Exit", "exit"),
         ],

@@ -1,4 +1,4 @@
-from config import YOOLDOO_CONTRACT, YOOLDOO_ABI, YOOLDOO_METHOD_ID
+from config import ARENA_CONTRACT, ARENA_ABI
 from ..account import Account
 from typing import Union
 from hashlib import sha256
@@ -7,19 +7,18 @@ from loguru import logger
 from utils.gas_checker import check_gas
 from utils.helpers import retry
 
-class Yooldoo(Account):
+
+class ArenaNft(Account):
     def __init__(self, account_id: int, private_key: str, proxy: Union[None, str]) -> None:
         super().__init__(account_id=account_id, private_key=private_key, proxy=proxy)
-        self.contract = self.get_contract(YOOLDOO_CONTRACT, YOOLDOO_ABI)
+        self.contract = self.get_contract(ARENA_CONTRACT, ARENA_ABI)
 
     @check_gas
     @retry
-    async def runStandUp(self):
-        logger.info(f"[{self.account_id}][{self.address}] Yooldoo stand up")
-        value = self.w3.to_wei(0.0001, 'ether')
-        txData = await self.getTxData(value)
-        txData['data'] = YOOLDOO_METHOD_ID
-        txData['to'] = YOOLDOO_CONTRACT
-        signedTx = await self.sign(txData)
+    async def mint(self):
+        logger.info(f"[{self.account_id}][{self.address}] Минт Arena")
+        txData = await self.getTxData()
+        tx = await self.contract.functions.safeMint('0x6fC42E939284e14fb214E4DDE46b1Aac01f32629').build_transaction(txData)
+        signedTx = await self.sign(tx)
         txHash = await self.send_raw_transaction(signedTx)
         await self.wait_until_tx_finished(txHash.hex())

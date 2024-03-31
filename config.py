@@ -85,6 +85,7 @@ with open('quest_modules/data/enders_gate.json') as file:
 SATOSHI_FAKE_WALLET = '0xecbEE1a087aA83Db1fCC6C2C5eFFC30BCb191589'
 
 YOOLDOO_CONTRACT = '0x63ce21BD9af8CC603322cB025f26db567dE8102b'
+YOOLDOO_METHOD_ID = '0xfb89f3b1'
 with open('quest_modules/data/yooldoo.json') as file:
     YOOLDOO_ABI = json.load(file)
 
@@ -120,6 +121,11 @@ BATTLEMON_NFT_CONTRACT = '0x578705C60609C9f02d8B7c1d83825E2F031e35AA'
 with open('quest_modules/data/battlemon.json') as file:
     BATTLEMON_NFT_ABI = json.load(file)
 
+NOUNS_CONTRACT = '0x9DF3c2C75a92069B99c73bd386961631F143727C'
+with open('quest_modules/data/nouns.json') as file:
+    NOUNS_ABI = json.load(file)
+NOUNS_CURRENCY = '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+
 TOMO_CONTRACT = '0x9E813d7661D7B56CBCd3F73E958039B208925Ef8'
 with open('quest_modules/data/tomo.json') as file:
     TOMO_ABI = json.load(file)
@@ -127,3 +133,45 @@ with open('quest_modules/data/tomo.json') as file:
 UNFETTERED_EXPEDITION_NFT_CONTRACT = '0x2dC9D44eC35d5DEfD146e5fD718eE3277dfaCF0A'
 with open('quest_modules/data/mint.json') as file:
     UNFETTERED_EXPEDITION_NFT_ABI = json.load(file)
+
+ZYPHER_CONTRACT = '0x490d76B1e9418a78B5403740BD70dfD4F6007E0f'
+ZYPHER_METHOD_ID = '0x36ab86c4'
+
+ZACE_CONTRACT='0x971A871Fd8811ABBb1F5e3FB1D84a873d381Cee4'
+ZACE_METHOD='0xbaeb0718'
+
+MICRO3_CONTRACT = '0x915D2358192f5429FA6eE6a6e5d1b37026D580Ba'
+with open('quest_modules/data/micro3.json') as file:
+    MICRO3_ABI = json.load(file)
+
+ALIEN_LINEA_CONTRACT='0x5EcDe77C11E52872aDeB3Ef3565Ffa0B2BCC1C68'
+with open('quest_modules/data/alien_linea.json') as file:
+    ALIEN_LINEA_ABI = json.load(file)
+
+ALIEN_LISTING_CONTRACT='0x5EcDe77C11E52872aDeB3Ef3565Ffa0B2BCC1C68'
+with open('quest_modules/data/alien_listing.json') as file:
+    ALIEN_LISTING_ABI = json.load(file)
+
+FROG_WAR_CONTRACT='0xEA81a18fb97401A9F4B79963090c65a3A30ECdce'
+with open('quest_modules/data/frog_war.json') as file:
+    FROG_WAR_ABI = json.load(file)
+FROG_WAR_CLAIM_METHOD_ID='0x57bc3d78'
+
+FROG_WAR_WARRIOR_CONTRACT='0x184E5677890c5aDd563dE785fF371f6c188d3dB6'
+with open('quest_modules/data/frog_war_warrior.json') as file:
+    FROG_WAR_WARRIOR_ABI = json.load(file)
+FROG_WAR_WARRIOR_CLAIM_METHOD_ID='0x57bc3d78'
+FROG_WAR_RELEASE_OPERATOR='0x64BE46dE349eb70490fCA494f0D1c3b7dA371870'
+
+ACG_WORLDS_CONTRACT='0xcD1Ea9e70d0260c0F47D217Ed6d5be9Cd4ED34fb'
+with open('quest_modules/data/acg_worlds.json') as file:
+    ACG_WORLDS_ABI = json.load(file)
+
+IMAGINALRY_CONTRACT='0xb99E5534d42500eB1d5820fBA3Bb8416cCB76396'
+with open('quest_modules/data/imaginalry.json') as file:
+    IMAGINALRY_ABI = json.load(file)
+IMAGINALRY_NFT_LINK='https://ipfs.io/ipfs/bafyreidwx4uav5zivvk7kto2pwszxlcqazqpbxub24zbkk5xzmeiugdap4/metadata.json'
+
+ARENA_CONTRACT='0xbd0ef89f141680b9b2417e4384fdf73cfc696f9f'
+with open('quest_modules/data/arena_nft.json') as file:
+    ARENA_ABI = json.load(file)
