@@ -9,7 +9,6 @@ from web3 import Web3
 from web3.middleware import geth_poa_middleware
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 from eth_account import Account as EthAccount
-from quest_modules.bitavatar import BitAvatar
 from questionary import Choice, Separator
 from functions import *
 from config import ACCOUNTS, PROXIES
@@ -53,6 +52,7 @@ def get_module():
             Choice("Минт Pictogram NFT", runPictographMintNft),
             Choice("Стейкинг Pictogram", runPictographStake),
             Choice("Минт Satoshi NFT", runSatoshiNftMint),
+            Choice("Минт Enders Gate", runEndersGateMint),
             Choice("Минт Abyss NFT", runAbyssNftMint),
             Choice("Yooldoo Stand Up", runYooldoo),
             Separator(" - 3-я неделя"),
@@ -65,7 +65,7 @@ def get_module():
             Separator(" - 4-я неделя"),
             Choice("Минтим Tanuki", runTanukiNftMint),
             Choice("Lucky Cat", runLuckyCat),
-            Choice("Lucky Cat", runZypher),
+            Choice("Zypher 2048", runZypher),
             Separator(" - 5-я неделя"),
             Choice("Минтим Battlemon Nft", runBattlemonMintNft),
             Choice("Минтим Nft Badge", runNftBadgeMint),
